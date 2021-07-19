@@ -279,7 +279,7 @@ int main(int argc, char* argv[])
 	plint numCores = global::mpi().getSize();
 	pcout << "Number of MPI processes: " << numCores << std::endl;
 	
-	global::directories().setOutputDir("./tmp/");
+	global::directories().setOutputDir(" ");
 
 	// read command line parameters
 	if (argc != 10)
@@ -310,7 +310,7 @@ int main(int argc, char* argv[])
 			h_/D_,      // ly
 			L_/D_       // lz
 	);
-	const T vtkSave = (T) 1/(T) 100; // sets periodicity of VTK output
+	const T vtkSave = (T) 10; // sets periodicity of VTK output
 	const T maxT = (T) 200.0; // sets maximum time of the simulation
 	
 	pcout << "omega = " << parameters.getOmega() << std::endl;
@@ -332,6 +332,9 @@ int main(int argc, char* argv[])
 	
 	Array<plint,3> forceIds;
 	simulationSetup(lattice,parameters,*boundaryCondition,forceIds);
+	
+	T iterationTime = T();
+	global::timer("mainLoop").start();
 
 	// loop over main time iteration
 	for(plint iT=0; iT<parameters.nStep(maxT);++iT)
@@ -347,7 +350,10 @@ int main(int argc, char* argv[])
 		lattice.collideAndStream();
 
 	}
-
+	iterationTime = global::timer("mainLoop").stop();
+	pcout << "Total computation time: " << iterationTime << std::endl;
+	T LPU = nnodes*parameters.nStep(maxT);
+	pcout << "Estimated LPUs/sec = " << LPU/iterationTime << std::endl;
 	delete boundaryCondition;
 	return 0;
 }
