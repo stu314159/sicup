@@ -335,7 +335,8 @@ int main(int argc, char* argv[])
 	
 	T iterationTime = T();
 	global::timer("mainLoop").start();
-
+	
+	plint vtkNum = 0;
 	// loop over main time iteration
 	for(plint iT=0; iT<parameters.nStep(maxT);++iT)
 	{
@@ -343,7 +344,7 @@ int main(int argc, char* argv[])
 		{
 			pcout << "step " << iT << "; t=" << iT*parameters.getDeltaT() << std::endl;
 			//writeGifs(lattice,parameters,iT);
-			writeVTK(lattice,parameters,iT);
+			writeVTK(lattice,parameters,vtkNum); vtkNum++;
 		}
 
 		// execute a time iteration
