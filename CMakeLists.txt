@@ -3,7 +3,7 @@ if(CI)
 
 set(EXECUTABLE_NAME "simple_channel")
 
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ".")
 
 ###############################################################################
 
@@ -32,7 +32,7 @@ project(sicup)
 enable_language(CXX)
 
 set(EXECUTABLE_NAME "simple_channel")
-set (CMAKE_RUNTIME_OUTPUT_DIRECTORY "../")
+set (CMAKE_RUNTIME_OUTPUT_DIRECTORY ".")
 
 if(NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE "Release")
