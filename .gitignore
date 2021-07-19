@@ -31,3 +31,4 @@
 *.out
 *.app
 **/build/
+simple_channel
