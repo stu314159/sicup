@@ -310,8 +310,8 @@ int main(int argc, char* argv[])
 			h_/D_,      // ly
 			L_/D_       // lz
 	);
-	const T vtkSave = (T) 10; // sets periodicity of VTK output
-	const T maxT = (T) 200.0; // sets maximum time of the simulation
+	const T vtkSave = (T) 50; // sets periodicity of VTK output
+	const T maxT = (T) 1000.0; // sets maximum time of the simulation
 	
 	pcout << "omega = " << parameters.getOmega() << std::endl;
 	writeLogFile(parameters, "3D square Poiseuille with Cylinder as an obstacle");
