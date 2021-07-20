@@ -266,7 +266,7 @@ void writeVTK(BlockLatticeT& lattice, IncomprFlowParam<T> const& parameters, pli
 {
 	T dx = parameters.getDeltaX();
 	T dt = parameters.getDeltaT();
-	ParallelVtkImageOutput3D<T> vtkOut(createFileName("vtk",iter,6),3,dx);
+	ParallelVtkImageOutput3D<T> vtkOut(createFileName("vtk",iter,1),3,dx);
 	vtkOut.writeData<3,float>(*computeVelocity(lattice),"velocity",dx/dt);
 	vtkOut.writeData<float>(*computeVelocityNorm(lattice),"velocityNorm",dx/dt);
 	vtkOut.writeData<3,float>(*computeVorticity(*computeVelocity(lattice)),"vorticity",1./dt);
@@ -336,7 +336,7 @@ int main(int argc, char* argv[])
 	T iterationTime = T();
 	global::timer("mainLoop").start();
 	
-	plint vtkNum = 0;
+	uint vtkNum = 0;
 	// loop over main time iteration
 	for(plint iT=0; iT<parameters.nStep(maxT);++iT)
 	{
