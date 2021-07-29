@@ -318,9 +318,11 @@ int main(int argc, char* argv[])
 
 	T omega = parameters.getOmega();
 
+	T cSmago = 0.14; // will need to tune this parameter
 	MultiBlockLattice3D<T,DESCRIPTOR> lattice(
 		parameters.getNx(), parameters.getNy(), parameters.getNz(),
-		new BGKdynamics<T,DESCRIPTOR>(omega));
+	        new SmagorinskyRegularizedDynamics<T,DESCRIPTOR>(parameters.getOmega(), cSmago));
+	//	new BGKdynamics<T,DESCRIPTOR>(omega));
 
 	OnLatticeBoundaryCondition3D<T,DESCRIPTOR>* boundaryCondition = 
 		createLocalBoundaryCondition3D<T,DESCRIPTOR>();
