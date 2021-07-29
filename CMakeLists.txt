@@ -104,10 +104,10 @@ endif()
 include_directories("$ENV{HOME}/projects/palabos/src")
 include_directories("$ENV{HOME}/projects/palabos/include")
 include_directories("$ENV{HOME}/projects/palabos/externalLibraries")
-include_directories("/home/sblair/projects/palabos/externalLibraries/Eigen3")
+include_directories("$ENV{HOME}/projects/palabos/externalLibraries/Eigen3")
 
-file(GLOB_RECURSE PALABOS_SRC "/home/sblair/projects/palabos/src/*.cpp")
-file(GLOB_RECURSE EXT_SRC "/home/sblair/projects/palabos/externalLibraries/tinyxml/*.cpp")
+file(GLOB_RECURSE PALABOS_SRC "$ENV{HOME}/projects/palabos/src/*.cpp")
+file(GLOB_RECURSE EXT_SRC "$ENV{HOME}/projects/palabos/externalLibraries/tinyxml/*.cpp")
 
 add_library(palabos STATIC ${PALABOS_SRC} ${EXT_SRC})
 
